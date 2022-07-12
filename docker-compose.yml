@@ -11,21 +11,14 @@ services:
     environment:
       - IS_COMPOSE=true
     depends_on:
-      - postgres
+      - db
     volumes:
       - .:/app
 
-  postgres:
-    container_name: database_capstone
+  db:
+    container_name: db
     image: postgres:14.4-alpine
     ports:
       - 5431:5432
     env_file:
       - ./.env
-    volumes:
-      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
-      - postgres_capstone:/var/lib/postgresql/data
-
-volumes:
-  postgres_capstone:
-    driver: local

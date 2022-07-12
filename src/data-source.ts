@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import "dotenv/config";
 
-const host = process.env.IS_COMPOSE ? "postgres" : "localhost";
+const host = process.env.IS_COMPOSE ? "db" : "localhost";
 
 export const AppDataSource =
   process.env.NODE_ENV === "test"
