@@ -2,14 +2,14 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import "dotenv/config";
 
-const host = process.env.IS_COMPOSE ? "postgres" : "localhost";
+const host = process.env.IS_COMPOSE ? "db" : "localhost";
 
 export const AppDataSource =
   process.env.NODE_ENV === "test"
     ? new DataSource({
         type: "sqlite",
         database: ":memory:",
-        entities: ["src/entities/*.ts"],
+        entities: ["./src/entities/*.ts"],
         synchronize: true,
       })
     : new DataSource({
@@ -21,6 +21,6 @@ export const AppDataSource =
         database: process.env.POSTGRES_DB,
         synchronize: false,
         logging: true,
-        entities: ["src/entities/*.ts"],
-        migrations: ["src/migrations/*.ts"],
+        entities: ["./src/entities/*.ts"],
+        migrations: ["./src/migrations/*.ts"],
       });
