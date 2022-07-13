@@ -6,14 +6,15 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from "typeorm";
+import { Review } from "./review.entity";
 
 @Entity("users")
 export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  // @OneToMany(() => Review, review => review.user)
-  // review: Review[];
+  @OneToMany(() => Review, (review) => review.user)
+  review: Review[];
 
   @Column({ length: 50 })
   user_name: string;

@@ -6,6 +6,8 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { User } from "./user.entity";
+import { Movie } from "./movie.entity";
 
 @Entity("reviews")
 export class Review {
@@ -24,11 +26,11 @@ export class Review {
   @CreateDateColumn()
   created_at: Date;
 
-  //   @OneToOne(() => User, { eagar: true, onDelete: "CASCADE" })
-  //   @JoinColumn({ name: "user_id" })
-  //   user: User;
+  @OneToOne(() => User, { onDelete: "CASCADE" })
+  @JoinColumn({ name: "user_id" })
+  user: User;
 
-  //   @OneToOne(() => Movie, { eagar: true, onDelete: "CASCADE" })
-  //   @JoinColumn({ name: "movie_id" })
-  //   movie: Movie;
+  @OneToOne(() => Movie, { onDelete: "CASCADE" })
+  @JoinColumn({ name: "movie_id" })
+  movie: Movie;
 }
