@@ -29,10 +29,4 @@ export class User {
 
   @Column("bool")
   is_adm: boolean;
-
-  constructor() {
-    if (!this.user_id) {
-      this.user_id = uuidv4();
-    }
-  }
 }
