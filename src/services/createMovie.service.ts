@@ -1,7 +1,6 @@
 import { IMovie } from "../interfaces";
 import { AppDataSource } from "../data-source";
-import { v4 as uuid } from "uuid";
-import { Movie } from "../entities/index";
+import { Movie } from "../entities/movie.entity";
 
 const createMovieService = async ({
   title,
@@ -12,7 +11,6 @@ const createMovieService = async ({
   const userRepository = AppDataSource.getRepository(Movie);
 
   const newMovie = userRepository.create({
-    id: uuid(),
     title,
     release_year,
     sypnose,
