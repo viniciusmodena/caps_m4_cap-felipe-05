@@ -1,4 +1,7 @@
 export interface IGenre {
-  id: string;
   name: string;
+}
+
+export interface IGenreUpdate {
+  name?: string;
 }

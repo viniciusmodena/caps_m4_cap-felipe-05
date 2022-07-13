@@ -1,16 +1,14 @@
-export interface IUserRequest {
+export interface IUser {
   user_name: string;
   email: string;
   password: string;
   is_adm: boolean;
 }
 
-export interface IUser {
-  id: string;
-  user_name: string;
-  email: string;
-  user_since: Date;
-  is_adm: boolean;
+export interface IUserUpdate {
+  user_name?: string;
+  email?: string;
+  password?: string;
 }
 
 export interface IUserLogin {
