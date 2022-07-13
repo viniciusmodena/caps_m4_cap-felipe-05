@@ -1,6 +1,6 @@
 import { Entity, ManyToOne } from 'typeorm'
 import { Movies } from './movies.entity'
-import { Genres } from './movies_genres'
+import { Genres } from './genres.entity'
 
 @Entity('movies_genres')
 class Movies_Genres {
