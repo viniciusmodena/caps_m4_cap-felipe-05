@@ -4,13 +4,13 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
+  Unique,
 } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
 
 @Entity("users")
 export class User {
   @PrimaryGeneratedColumn("uuid")
-  user_id: string;
+  id: string;
 
   // @OneToMany(() => Review, review => review.user)
   // review: Review[];
@@ -22,7 +22,7 @@ export class User {
   email: string;
 
   @Column({ select: false, length: 128 })
-  password: string;
+  password?: string;
 
   @CreateDateColumn()
   created_at: Date;
