@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import "dotenv/config";
 
-const host = process.env.IS_COMPOSE ? "postgres" : "localhost";
+const host = process.env.IS_COMPOSE ? "db" : "localhost";
 
 export const AppDataSource =
   process.env.NODE_ENV === "test"
@@ -16,9 +16,9 @@ export const AppDataSource =
         type: "postgres",
         host,
         port: 5432,
-        username: process.env.POSTGRES_USER,
-        password: process.env.POSTGRES_PASSWORD,
-        database: process.env.POSTGRES_DB,
+        username: "renata",
+        password: "sucesso",
+        database: "capstone_m4",
         synchronize: false,
         logging: true,
         entities: ["src/entities/*.ts"],
