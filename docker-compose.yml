@@ -20,5 +20,12 @@ services:
     image: postgres:14.4-alpine
     ports:
       - 5431:5432
+<<<<<<< HEAD
+    environment:
+      - POSTGRES_USER=felipe
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=capstone
+=======
     env_file:
       - ./.env
+>>>>>>> develop
