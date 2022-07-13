@@ -3,15 +3,13 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
-  PrimaryColumn,
-  Unique,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 
-@Entity()
-@Unique("email")
+@Entity("users")
 export class User {
-  @PrimaryColumn("uuid")
+  @PrimaryGeneratedColumn("uuid")
   user_id: string;
 
   // @OneToMany(() => Review, review => review.user)
@@ -20,15 +18,21 @@ export class User {
   @Column({ length: 50 })
   user_name: string;
 
-  @Column({ length: 50 })
+  @Column({ length: 50, unique: true })
   email: string;
 
   @Column({ select: false, length: 128 })
   password: string;
 
   @CreateDateColumn()
-  user_since: Date;
+  created_at: Date;
 
   @Column("bool")
   is_adm: boolean;
+
+  constructor() {
+    if (!this.user_id) {
+      this.user_id = uuidv4();
+    }
+  }
 }
