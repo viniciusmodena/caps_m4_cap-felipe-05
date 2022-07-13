@@ -7,6 +7,7 @@ import {
   updateInfoUserController,
 } from "../controllers/user.controller";
 
+
 const userRouter = Router();
 
 userRouter.post("", createUserController);
