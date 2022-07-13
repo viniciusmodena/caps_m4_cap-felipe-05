@@ -1,8 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+} from "typeorm";
 
-import { v4 as uuid } from "uuid";
+import { Genre } from "./genre.entity";
+import { Review } from "./review.entity";
 
-@Entity("movie")
+@Entity("movies")
 export class Movie {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
@@ -18,5 +26,11 @@ export class Movie {
 
   @Column()
   image_url: string;
-  // colocar onetomany
+
+  @OneToMany(() => Review, (review) => review.movie)
+  review: Review[];
+
+  @ManyToMany(() => Genre, (genre) => genre.movies)
+  @JoinTable()
+  genres: Genre[];
 }
