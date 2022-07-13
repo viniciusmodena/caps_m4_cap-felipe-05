@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import createUserService from "../../services/user/createUser.service";
-import listOneUserService from "../../services/user/listOneUser.service";
-import listUsersService from "../../services/user/listUsers.service";
+import createUserService from "../services/user/createUser.service";
+import listOneUserService from "../services/user/listOneUser.service";
+import listUsersService from "../services/user/listUsers.service";
 
 export const createUserController = async (req: Request, res: Response) => {
   const { user_name, email, password, is_adm } = req.body;
