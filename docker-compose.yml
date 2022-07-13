@@ -21,6 +21,6 @@ services:
     ports:
       - 5431:5432
     environment:
-      - POSTGRES_USER=felipe
-      - POSTGRES_PASSWORD=1234
-      - POSTGRES_DB=capstone
+      - POSTGRES_USER=grupo05
+      - POSTGRES_PASSWORD=grupo05dofelipe
+      - POSTGRES_DB=capstone_m4
