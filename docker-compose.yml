@@ -20,12 +20,5 @@ services:
     image: postgres:14.4-alpine
     ports:
       - 5431:5432
-<<<<<<< HEAD
-    environment:
-      - POSTGRES_USER=grupo05
-      - POSTGRES_PASSWORD=grupo05dofelipe
-      - POSTGRES_DB=capstone_m4
-=======
     env_file:
       - ./.env
->>>>>>> e3cda76727e6619fbc56138f50ef245319951a88
