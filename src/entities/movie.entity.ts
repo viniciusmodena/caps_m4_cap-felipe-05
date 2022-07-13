@@ -22,7 +22,7 @@ export class Movie {
   release_year: number;
 
   @Column()
-  sypnose: string;
+  synopse: string;
 
   @Column()
   image_url: string;

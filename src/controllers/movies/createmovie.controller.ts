@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import createMovieService from "../../services/createMovie.service";
+
+import createMovieService from "../../services/movie/createMovie.service";
 
 const createMovieController = async (req: Request, res: Response) => {
   try {
-    const { id, title, release_year, sypnose, image_url } = req.body;
+    const { title, release_year, synopse, image_url } = req.body;
 
     const newMovie = await createMovieService({
-      id,
       title,
       release_year,
-      sypnose,
+      synopse,
       image_url,
     });
 
