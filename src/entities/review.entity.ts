@@ -3,9 +3,12 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { Movie } from "./movie.entity";
+import { User } from "./user.entity";
 
 @Entity("reviews")
 export class Review {
@@ -24,11 +27,11 @@ export class Review {
   @CreateDateColumn()
   created_at: Date;
 
-  //   @OneToOne(() => User, { eagar: true, onDelete: "CASCADE" })
-  //   @JoinColumn({ name: "user_id" })
-  //   user: User;
+  @ManyToOne(() => User, { onDelete: "CASCADE" })
+  @JoinColumn()
+  user: User;
 
-  //   @OneToOne(() => Movie, { eagar: true, onDelete: "CASCADE" })
-  //   @JoinColumn({ name: "movie_id" })
-  //   movie: Movie;
+  @ManyToOne(() => Movie, { onDelete: "CASCADE" })
+  @JoinColumn()
+  movie: Movie;
 }
