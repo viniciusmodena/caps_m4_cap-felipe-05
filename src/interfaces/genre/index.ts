@@ -5,3 +5,8 @@ export interface IGenre {
 export interface IGenreUpdate {
   name?: string;
 }
+
+export interface IGenre_Movie_Ids {
+  movieId: string
+  genreId: string
+}

@@ -20,7 +20,7 @@ export const AppDataSource =
         password: "1234",
         database: "capstone_m4",
         synchronize: false,
-        logging: true,
+        logging: false,
         entities: ["./src/entities/*.ts"],
         migrations: ["./src/migrations/*.ts"],
       });
