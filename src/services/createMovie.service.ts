@@ -1,25 +1,25 @@
-import { IMovie } from "../interfaces";
-import { AppDataSource } from "../data-source";
-import { Movie } from "../entities/movie.entity";
+// import { IMovie } from "../interfaces/movie";
+// import { AppDataSource } from "../data-source";
+// import { Movie } from "../entities/movie.entity";
 
-const createMovieService = async ({
-  title,
-  release_year,
-  sypnose,
-  image_url,
-}: IMovie) => {
-  const userRepository = AppDataSource.getRepository(Movie);
+// const createMovieService = async ({
+//   title,
+//   release_year,
+//   sypnose,
+//   image_url,
+// }: IMovie) => {
+//   const userRepository = AppDataSource.getRepository(Movie);
 
-  const newMovie = userRepository.create({
-    title,
-    release_year,
-    sypnose,
-    image_url,
-  });
+//   const newMovie = userRepository.create({
+//     title,
+//     release_year,
+//     sypnose,
+//     image_url,
+//   });
 
-  await userRepository.save(newMovie);
+//   await userRepository.save(newMovie);
 
-  return newMovie;
-};
+//   return newMovie;
+// };
 
-export default createMovieService;
+// export default createMovieService;
