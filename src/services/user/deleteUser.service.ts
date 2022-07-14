@@ -2,15 +2,14 @@ import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/appError";
 
-const listOneUserService = async (id: string): Promise<User> => {
+const deleteUserService = async (userId: string): Promise<Object> => {
   const userRepository = AppDataSource.getRepository(User);
-  const user = await userRepository.findOneBy({ id: id });
+  const userToDelete = await userRepository.delete({ id: userId });
 
-  if (!user) {
+  if (!!userToDelete) {
     throw new AppError("User not found!");
   }
-
-  return user;
+  return userToDelete;
 };
 
-export default listOneUserService;
+export default deleteUserService;
