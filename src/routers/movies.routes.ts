@@ -1,9 +1,11 @@
 import { Router } from "express";
-import createMovieController from "../controllers/movies/createmovie.controller";
-import deleteMovieController from "../controllers/movies/deletemovie.controller";
-import listMovieController from "../controllers/movies/listMovie.controller";
-import listOneMovieController from "../controllers/movies/listOneMovie.controller";
-import updateMovieController from "../controllers/movies/updateMovie.controller";
+import {
+  createMovieController,
+  deleteMovieController,
+  listMovieController,
+  listOneMovieController,
+  updateMovieController,
+} from "../controllers/movies.controllers";
 
 const moviesRouter = Router();
 
