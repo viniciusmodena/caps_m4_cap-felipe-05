@@ -13,7 +13,7 @@ export class User {
   id: string;
 
   @OneToMany(() => Review, (review) => review.user)
-  review: Review[];
+  reviews: Review[];
 
   @Column({ length: 50 })
   user_name: string;

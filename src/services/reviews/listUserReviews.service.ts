@@ -6,7 +6,7 @@ const listUserReviewsService = async (user_id: string) => {
   console.log(user_id);
   const reviews = await userRepository.findOne({
     relations: {
-      review: true,
+      reviews: true,
     },
     where: { id: user_id },
   });
