@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/users", userRouter);
-app.use("/sessions", sessionRouter);
+app.use("/login", sessionRouter);
 app.use("/movies", moviesRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/genres", genreRouter);
