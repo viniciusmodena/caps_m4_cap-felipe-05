@@ -4,7 +4,6 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  Unique,
 } from "typeorm";
 import { Review } from "./review.entity";
 
