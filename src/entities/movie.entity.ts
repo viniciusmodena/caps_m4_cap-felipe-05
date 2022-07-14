@@ -28,7 +28,7 @@ export class Movie {
   image_url: string;
 
   @OneToMany(() => Review, (review) => review.movie)
-  review: Review[];
+  reviews: Review[];
 
   @ManyToMany(() => Genre, (genre) => genre.movies)
   @JoinTable()

@@ -28,10 +28,10 @@ export class Review {
   created_at: Date;
 
   @ManyToOne(() => User, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "user_id" })
+  @JoinColumn()
   user: User;
 
   @ManyToOne(() => Movie, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "movie_id" })
+  @JoinColumn()
   movie: Movie;
 }
