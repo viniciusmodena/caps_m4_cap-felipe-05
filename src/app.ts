@@ -16,6 +16,7 @@ app.use("/users", userRouter);
 app.use("/sessions", sessionRouter);
 app.use("/movies", moviesRouter);
 app.use("/reviews", reviewsRouter);
+app.use("/genres", genreRouter);
 
 app.use(handleAppErrorMiddleware);
 
