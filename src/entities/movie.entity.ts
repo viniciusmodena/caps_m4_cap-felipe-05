@@ -22,13 +22,13 @@ export class Movie {
   release_year: number;
 
   @Column()
-  sypnose: string;
+  synopse: string;
 
   @Column()
   image_url: string;
 
   @OneToMany(() => Review, (review) => review.movie)
-  review: Review[];
+  reviews: Review[];
 
   @ManyToMany(() => Genre, (genre) => genre.movies)
   @JoinTable()
