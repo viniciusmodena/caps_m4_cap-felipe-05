@@ -1,10 +1,15 @@
-import { Review } from "../../entities/review.entity";
 import { AppDataSource } from "../../data-source";
+import { User } from "../../entities/user.entity";
 
-const listUserReviewsService = async (user_id: string): Promise<Review[]> => {
-  const reviewRepository = AppDataSource.getRepository(Review);
-
-  const reviews = await reviewRepository.find({ where: { id: user_id } });
+const listUserReviewsService = async (user_id: string) => {
+  const userRepository = AppDataSource.getRepository(User);
+  console.log(user_id);
+  const reviews = await userRepository.findOne({
+    relations: {
+      review: true,
+    },
+    where: { id: user_id },
+  });
 
   return reviews;
 };
