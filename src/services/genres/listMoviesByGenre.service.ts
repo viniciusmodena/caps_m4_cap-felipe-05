@@ -7,7 +7,7 @@ const listMoviesByGenreService = async (genreId: string) => {
 
   const genre = await genreRepository
     .createQueryBuilder('genres')
-    .innerJoinAndSelect('genres.movies', 'movies')
+    .leftJoinAndSelect('genres.movies', 'movies')
     .where('genres.id = :genreId', { genreId: genreId })
     .getOne()
   
