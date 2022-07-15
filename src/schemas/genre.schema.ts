@@ -1,7 +1,21 @@
 import * as yup from "yup";
-import { IGenre } from "../interfaces/genre";
+import { IGenre, IGenreUpdate } from "../interfaces/genre";
 import { SchemaOf } from "yup";
-const genreCreateSchema: SchemaOf<IGenre> = yup.object().shape({
-  name: yup.string().required(),
+export const genreCreateSchema: SchemaOf<IGenre> = yup.object().shape({
+  name: yup
+    .string()
+    .required()
+    .max(50)
+    .transform((value, originalValue) => {
+      return originalValue.toLowerCase();
+    }),
 });
-export default genreCreateSchema;
+
+export const genreUpdateSchema: SchemaOf<IGenreUpdate> = yup.object().shape({
+  name: yup
+    .string()
+    .max(50)
+    .transform((value, originalValue) => {
+      return originalValue.toLowerCase();
+    }),
+});

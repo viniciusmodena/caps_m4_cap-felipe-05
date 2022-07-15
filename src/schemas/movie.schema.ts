@@ -1,10 +1,16 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { IMovie } from "../interfaces/movie";
-const movieCreateSchema: SchemaOf<IMovie> = yup.object().shape({
-  title: yup.string().required(),
-  release_year: yup.number().integer().positive().min(4).max(4).required(),
-  synopse: yup.string().required(),
-  img_url: yup.string().required(),
+import { IMovie, IMovieUpdate } from "../interfaces/movie";
+export const movieCreateSchema: SchemaOf<IMovie> = yup.object().shape({
+  title: yup.string().required().max(150),
+  release_year: yup.number().integer().min(1800).max(4000).required(),
+  synopse: yup.string().required().max(1000),
+  image_url: yup.string().required().max(256),
 });
-export default movieCreateSchema;
+
+export const movieUpdateSchema: SchemaOf<IMovieUpdate> = yup.object().shape({
+  title: yup.string().max(150),
+  release_year: yup.number().integer().min(1800).max(4000),
+  synopse: yup.string().max(1000),
+  image_url: yup.string().max(256),
+});

@@ -6,7 +6,7 @@ import listOneMovieService from "../services/movies/listOneMovie.service";
 import updateMovieService from "../services/movies/updateMovie.service";
 
 export const createMovieController = async (req: Request, res: Response) => {
-  const { title, release_year, synopse, image_url } = req.body;
+  const { title, release_year, synopse, image_url } = req.userData;
 
   const newMovie = await createMovieService({
     title,
@@ -20,7 +20,7 @@ export const createMovieController = async (req: Request, res: Response) => {
 
 export const updateMovieController = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { title, release_year, synopse, image_url } = req.body;
+  const { title, release_year, synopse, image_url } = req.userData;
   const newMovie = await updateMovieService(
     id,
     title,
