@@ -5,12 +5,13 @@ import {
   listMovieReviewsController,
   listUserReviewsController,
 } from "../controllers/reviews.controllers";
+import tokenValidation from "../middlewares/tokenValidation.middleware";
 
 const reviewsRouter = Router();
 
-reviewsRouter.post("/:movie_id", createReviewController);
+reviewsRouter.post("/:movie_id", tokenValidation, createReviewController);
 reviewsRouter.get("/users/:user_id", listUserReviewsController);
 reviewsRouter.get("/movies/:movie_id", listMovieReviewsController);
-reviewsRouter.delete("/:id", deleteReviewController);
+reviewsRouter.delete("/:id", tokenValidation, deleteReviewController);
 
 export default reviewsRouter;
