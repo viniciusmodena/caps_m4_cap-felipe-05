@@ -6,33 +6,36 @@ import { AppError } from '../../errors/appError'
 
 const addGenreToMovieService = async ({
   movieId,
-  genreId,
+  genreList,
 }: IGenre_Movie_Ids) => {
   const movieRepository = AppDataSource.getRepository(Movie)
   const genreRepository = AppDataSource.getRepository(Genre)
-
-  const genre = await genreRepository.findOne({where: {id: genreId}})
-
-  if (!genre) {
-    throw new AppError('genre not found', 404)
-  }
 
   const movie = await movieRepository
     .createQueryBuilder('movies')
     .leftJoinAndSelect('movies.genres', 'genres')
     .where('movies.id = :movieId', { movieId: movieId })
     .getOne()
-  
+
   if (!movie) {
-    throw new AppError('movie not found', 404)
+    throw new AppError('Movie not found', 404)
   }
-  
-  movie.genres = [...movie.genres, genre]
+
+  genreList.forEach(async (genreName) => {
+    const genre = await genreRepository.findOne({
+      where: { name: genreName.toLowerCase() },
+    })
+
+    if (!genre) {
+      throw new AppError(`Genre ${genreName} not found`, 404)
+    }
+
+    movie.genres = [...movie.genres, genre]
+  })
 
   await movieRepository.save(movie)
 
-  return `Genre ${genre.name} add to move ${movie.title} succesfully`
-
+  return `Genres add to movie succesfully`
 }
 
 export default addGenreToMovieService

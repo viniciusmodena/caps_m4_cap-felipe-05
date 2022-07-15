@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import createMovieService from "../services/movie/createMovie.service";
-import deleteMovieService from "../services/movie/deletemovie.service";
-import listMovieService from "../services/movie/listMovie.service";
-import listOneMovieService from "../services/movie/listOneMovie.service";
-import updateMovieService from "../services/movie/updateMovie.service";
+import createMovieService from "../services/movies/createMovie.service";
+import deleteMovieService from "../services/movies/deletemovie.service";
+import listMovieService from "../services/movies/listMovie.service";
+import listOneMovieService from "../services/movies/listOneMovie.service";
+import updateMovieService from "../services/movies/updateMovie.service";
 
 export const createMovieController = async (req: Request, res: Response) => {
   const { title, release_year, synopse, image_url } = req.userData;
