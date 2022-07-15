@@ -5,9 +5,9 @@ import listOneUserService from "../services/user/listOneUser.service";
 import listUsersService from "../services/user/listUsers.service";
 import updateInfoUserService from "../services/user/updateInfoUser.service";
 
-
 export const createUserController = async (req: Request, res: Response) => {
-  const { user_name, email, password, is_adm } = req.body;
+  const { user_name, email, password, is_adm } = req.userData;
+
   const user = await createUserService({ user_name, email, password, is_adm });
 
   return res.status(201).json(user);
@@ -28,7 +28,7 @@ export const listOneUserController = async (req: Request, res: Response) => {
 
 export const updateInfoUserController = async (req: Request, res: Response) => {
   const userId = req.params.id;
-  const data = req.body;
+  const data = req.userData;
 
   const user = await updateInfoUserService(userId, data);
 
@@ -42,5 +42,4 @@ export const deleteUserController = async (req: Request, res: Response) => {
   if (userDeleted) {
     return res.status(200).json({ message: "User deleted" });
   }
-
 };

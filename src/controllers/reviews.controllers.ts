@@ -6,7 +6,7 @@ import listMovieReviewsService from "../services/reviews/listMovieReviews.servic
 import listUserReviewsService from "../services/reviews/listUserReviews.service";
 
 export const createReviewController = async (req: Request, res: Response) => {
-  const { title, description, rating, user_id } = req.body;
+  const { title, description, rating, user_id } = req.userData;
   const movie_id = req.params.movie_id;
 
   // const user_id = req.userData.id;
