@@ -11,22 +11,19 @@ const addGenreToMovieService = async ({
   const movieRepository = AppDataSource.getRepository(Movie)
   const genreRepository = AppDataSource.getRepository(Genre)
 
-  console.log('genreList: ', genreList)
+  const movie = await movieRepository
+    .createQueryBuilder('movies')
+    .leftJoinAndSelect('movies.genres', 'genres')
+    .where('movies.id = :movieId', { movieId: movieId })
+    .getOne()
 
-   const movie = await movieRepository
-     .createQueryBuilder('movies')
-     .leftJoinAndSelect('movies.genres', 'genres')
-     .where('movies.id = :movieId', { movieId: movieId })
-     .getOne()
+  if (!movie) {
+    throw new AppError('Movie not found', 404)
+  }
 
-   if (!movie) {
-     throw new AppError('Movie not found', 404)
-   }
-  
   genreList.forEach(async (genreName) => {
-
     const genre = await genreRepository.findOne({
-      where: { name: genreName },
+      where: { name: genreName.toLowerCase() },
     })
 
     if (!genre) {
@@ -34,11 +31,9 @@ const addGenreToMovieService = async ({
     }
 
     movie.genres = [...movie.genres, genre]
-
-    console.log('movies genres saved: ', movie.genres)
-
-    await movieRepository.save(movie)
   })
+
+  await movieRepository.save(movie)
 
   return `Genres add to movie succesfully`
 }
