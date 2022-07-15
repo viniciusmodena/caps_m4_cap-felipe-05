@@ -1,5 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { Movie } from "../../entities/movie.entity";
+import { AppError } from "../../errors/appError";
 
 const updateMovieService = async (
   id: string,
@@ -12,7 +13,7 @@ const updateMovieService = async (
 
   const movie = await movieUpdateRepository.findOneBy({ id: id });
   if (!movie) {
-    throw new Error("User not found");
+    throw new AppError("Movie not found");
   }
   await movieUpdateRepository.update(movie!.id, {
     title: title,
