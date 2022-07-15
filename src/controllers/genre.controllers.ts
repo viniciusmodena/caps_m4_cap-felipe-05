@@ -17,10 +17,10 @@ export const addGenreToMovieController = async (
   req: Request,
   res: Response
 ) => {
-  const { genreId } = req.body
+  const { genreList } = req.body
   const { movieId } = req.params
 
-  const addGenre = await addGenreToMovieService({ movieId, genreId })
+  const addGenre = await addGenreToMovieService({ movieId, genreList })
 
   res.json(addGenre)
 }
