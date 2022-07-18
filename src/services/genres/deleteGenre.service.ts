@@ -8,11 +8,11 @@ const deleteGenreService = async (genreId: string) => {
   const genre = await genreRepository.findOne({ where: { id: genreId } });
 
   if (!genre) {
-    throw new AppError("genre not found", 404);
+    throw new AppError("Genre not found", 404);
   }
   await genreRepository.remove(genre);
 
-  return { message: "genre has been removed" };
+  return { message: "Genre has been removed" };
 };
 
 export default deleteGenreService;

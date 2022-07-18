@@ -12,7 +12,8 @@ import tokenValidation from "../middlewares/tokenValidation.middleware";
 const reviewsRouter = Router();
 
 reviewsRouter.post(
-  "/:movie_id",
+  "/movies/:movie_id",
+  tokenValidation,
   validate(reviewCreateSchema),
   createReviewController
 );
