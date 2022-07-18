@@ -7,6 +7,7 @@ import {
   listUsersConstroller,
   updateInfoUserController,
 } from "../controllers/user.controller";
+import isOwnership from "../middlewares/isOwnership.middleware";
 import tokenValidation from "../middlewares/tokenValidation.middleware";
 import { validate } from "../middlewares/validate.middleware";
 import { userCreateSchema, userUpdateSchema } from "../schemas/user.schema";
@@ -19,9 +20,10 @@ userRouter.get("/:id", listOneUserController);
 userRouter.patch(
   "/:id",
   tokenValidation,
+  isOwnership,
   validate(userUpdateSchema),
   updateInfoUserController
 );
-userRouter.delete("/:id", tokenValidation, deleteUserController);
+userRouter.delete("/:id", tokenValidation, isOwnership, deleteUserController);
 
 export default userRouter;

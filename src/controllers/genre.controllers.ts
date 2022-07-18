@@ -17,7 +17,7 @@ export const addGenreToMovieController = async (
   req: Request,
   res: Response
 ) => {
-  const { genreList } = req.reqData;
+  const { genreList } = req.body;
   const { movieId } = req.params;
 
   const addGenre = await addGenreToMovieService({ movieId, genreList });
@@ -45,7 +45,7 @@ export const listGenreController = async (req: Request, res: Response) => {
 export const deleteGenreController = async (req: Request, res: Response) => {
   const { genreId } = req.params;
 
-  const genreDeleted = await deleteGenreService(genreId);
+  await deleteGenreService(genreId);
 
-  return res.status(204).json({ message: "Genre deleted." });
+  return res.status(200).json({ message: "Genre deleted." });
 };

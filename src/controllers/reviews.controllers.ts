@@ -8,8 +8,6 @@ export const createReviewController = async (req: Request, res: Response) => {
   const { title, description, rating } = req.body;
   const { movie_id } = req.params;
   const { user_id } = req.userData;
-  console.log(user_id);
-  console.log("entrou");
 
   const newReview = await createReviewService({
     title,
