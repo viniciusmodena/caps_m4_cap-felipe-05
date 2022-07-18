@@ -5,6 +5,7 @@ import app from '../../app'
 import request from 'supertest'
 import { Genre } from '../../entities/genre.entity'
 import { IUser } from '../../interfaces/user'
+import supertest from 'supertest'
 
 const genre: IGenre = {
   name: 'gente test',
@@ -15,9 +16,9 @@ const tooLargeGenre: IGenre = {
 }
 
 const user: IUser = {
-  user_name: 'vinicius',
-  email: 'vinicius@email.com',
-  password: '1234',
+  user_name: 'user test',
+  email: 'usertest@email.com',
+  password: '12345',
   is_adm: true,
 }
 
@@ -48,10 +49,12 @@ describe('Tests for route /genres, create', () => {
 
 
   test('Should be able to create genre', async () => {
-    const response = await request(app)
+    const response = await supertest(app)
       .post('/genres')
       .set('Authorization', `Bearer ${token}`)
       .send(genre)
+
+    console.log('resposta do create genre: ', response.body)
 
     expect(response.status).toEqual(201)
     expect(response.body).toHaveProperty("id")

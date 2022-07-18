@@ -9,6 +9,8 @@ const tokenValidation = async (
   try {
     const token = req.headers.authorization;
 
+    console.log('token no middleware: ', token)
+
     jwt.verify(
       token as string,
       process.env.JWT_SECRET as string,
