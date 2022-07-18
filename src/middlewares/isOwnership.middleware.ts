@@ -12,12 +12,20 @@ const isOwnership = async (req: Request, res: Response, next: NextFunction) => {
       where: { id: req.params.review_id },
     });
 
-    if (review.user_id == userIdLogin) {
+    if (review?.user.id == userIdLogin) {
       next();
     }
 
     throw new AppError("Unauthorized", 401);
   }
+
+  const userIdParams = req.params.id;
+
+  if (userIdLogin === userIdParams) {
+    next();
+  }
+
+  throw new AppError("Access denied!");
 };
 
 export default isOwnership;
