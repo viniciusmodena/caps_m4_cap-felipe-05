@@ -30,8 +30,6 @@ const addGenreToMovieService = async ({
       throw new AppError(`Genre ${genreName} not found`, 404);
     }
 
-    // if (!movie.genres.includes(genre)) {
-    // }
     movie.genres = [...movie.genres, genre];
   }
 
