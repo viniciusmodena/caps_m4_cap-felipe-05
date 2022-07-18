@@ -16,6 +16,16 @@ const updateInfoUserService = async (
     throw new AppError("User not found!", 404);
   }
 
+  if (data.email) {
+    const users = await userRepository.find();
+
+    const emailAlreadyExist = users.find((user) => user.email === data.email);
+
+    if (emailAlreadyExist) {
+      throw new AppError("Email already exists!");
+    }
+  }
+
   if (data.password) {
     data.password = bcrypt.hashSync(data.password, 10);
   }
