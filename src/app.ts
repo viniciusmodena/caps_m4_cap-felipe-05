@@ -2,21 +2,13 @@ import "reflect-metadata";
 import "express-async-errors";
 import express from "express";
 import handleAppErrorMiddleware from "./middlewares/handleAppError.middleware";
-import moviesRouter from "./routers/movies.routes";
-import reviewsRouter from "./routers/reviews.routes";
-import userRouter from "./routers/user.routes";
-import sessionRouter from "./routers/session.routes";
-import genreRouter from "./routers/genres.routes";
+import appRoutes from "./routers";
 
 const app = express();
 
 app.use(express.json());
 
-app.use("/users", userRouter);
-app.use("/login", sessionRouter);
-app.use("/movies", moviesRouter);
-app.use("/reviews", reviewsRouter);
-app.use("/genres", genreRouter);
+appRoutes(app);
 
 app.use(handleAppErrorMiddleware);
 

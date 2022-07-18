@@ -8,17 +8,24 @@ import {
 import { validate } from "../middlewares/validate.middleware";
 import reviewCreateSchema from "../schemas/review.schema";
 import tokenValidation from "../middlewares/tokenValidation.middleware";
+import isOwnership from "../middlewares/isOwnership.middleware";
 
 const reviewsRouter = Router();
 
 reviewsRouter.post(
-  "/:movie_id",
+  "/movies/:movie_id",
+  tokenValidation,
   validate(reviewCreateSchema),
   createReviewController
 );
 
 reviewsRouter.get("/users/:user_id", listUserReviewsController);
 reviewsRouter.get("/movies/:movie_id", listMovieReviewsController);
-reviewsRouter.delete("/:review_id", tokenValidation, deleteReviewController);
+reviewsRouter.delete(
+  "/:review_id",
+  tokenValidation,
+  isOwnership,
+  deleteReviewController
+);
 
 export default reviewsRouter;

@@ -2,10 +2,8 @@ import { AppDataSource } from "../../data-source";
 import { Movie } from "../../entities/movie.entity";
 import { AppError } from "../../errors/appError";
 
-const listOneMovieService = async (id: string) => {
+const listOneMovieService = async (id: string): Promise<Movie> => {
   const movieOneRepository = AppDataSource.getRepository(Movie);
-
-  // const movie = await movieOneRepository.findOneBy({ id });
 
   const movie = await movieOneRepository
     .createQueryBuilder("movies")
@@ -14,7 +12,7 @@ const listOneMovieService = async (id: string) => {
     .getOne();
 
   if (!movie) {
-    throw new AppError("Genre not found", 404);
+    throw new AppError("Movie not found", 404);
   }
 
   return movie;

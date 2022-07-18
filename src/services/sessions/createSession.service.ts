@@ -14,6 +14,7 @@ const createSessionService = async ({ email, password }: IUserLogin) => {
     where: {
       email: email,
     },
+    select: ["id", "password", "is_adm"],
   });
 
   if (!user) {

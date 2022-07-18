@@ -13,10 +13,26 @@ import { genreCreateSchema } from "../schemas/genre.schema";
 
 const genreRouter = Router();
 
-genreRouter.post("", validate(genreCreateSchema), tokenValidation, authenticationIsAdm, createGenreController);
-genreRouter.post("/movie/:movieId", addGenreToMovieController);
+genreRouter.post(
+  "",
+  tokenValidation,
+  authenticationIsAdm,
+  validate(genreCreateSchema),
+  createGenreController
+);
+genreRouter.post(
+  "/movie/:movieId",
+  tokenValidation,
+  authenticationIsAdm,
+  addGenreToMovieController
+);
 genreRouter.get("/:genreId", listMoviesByGenreController);
 genreRouter.get("", listGenreController);
-genreRouter.delete("/:genreId", tokenValidation, authenticationIsAdm, deleteGenreController);
+genreRouter.delete(
+  "/:genreId",
+  tokenValidation,
+  authenticationIsAdm,
+  deleteGenreController
+);
 
 export default genreRouter;

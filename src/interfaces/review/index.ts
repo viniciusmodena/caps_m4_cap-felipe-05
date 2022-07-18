@@ -5,3 +5,9 @@ export interface IReview {
   movie_id: string;
   user_id: string;
 }
+
+export interface IReviewRequest {
+  title?: string;
+  description?: string;
+  rating: number;
+}
