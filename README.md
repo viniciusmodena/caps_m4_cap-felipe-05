@@ -411,7 +411,9 @@ Response
 ```
 
 {
-  "name": "horror"
+  "id": "eeir23io-43oi43i-dwp2",
+  "name": "horror",
+  "movies": []
 }
 
 ```
@@ -428,7 +430,7 @@ Body format:
 
 ```
 {
-  "genres": ["horror", "comedy"]
+  "genreList": ["horror", "comedy"]
 }
 
 ```
@@ -455,15 +457,20 @@ Response:
 
 ```
 
-[
- {
+{
+
+ "id": "eeir23io-43oi43i-dwp2",
+ "name": "horror",
+ "movies": [
+  {
     "title": "Harry Potter",
   "release_year": "10/6/2001"
   "synopse": "Lorem ipsum dorem requires something to describre it",
   "image_url": "http://google.com.br",
-  genres: ["horror", "comedy"]
  }
-]
+ ]
+}
+
 
 ```
 
@@ -478,11 +485,29 @@ Response:
 [
   {
     "id": "eko12p13-12k3o1p2312-13e2",
-    "name": "horror"
+    "name": "horror",
+     "movies":
+      [
+        {
+        "title": "Harry Potter",
+        "release_year": "10/6/2001"
+        "synopse": "Lorem ipsum dorem requires something to describre it",
+        "image_url": "http://google.com.br",
+        }
+      ]
   },
   {
     "id": "md45ss2-fdpokf34o3kr-334o",
-    "name": "comedy"
+    "name": "comedy",
+    "movies":
+      [
+        {
+        "title": "Harry Potter",
+        "release_year": "10/6/2001"
+        "synopse": "Lorem ipsum dorem requires something to describre it",
+        "image_url": "http://google.com.br",
+        }
+      ]
   }
 ]
 
