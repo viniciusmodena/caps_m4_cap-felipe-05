@@ -7,6 +7,6 @@ export interface IGenreUpdate {
 }
 
 export interface IGenre_Movie_Ids {
-  movieId: string
-  genreId: string
+  movieId: string;
+  genreList: string[];
 }

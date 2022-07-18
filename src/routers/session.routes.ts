@@ -1,9 +1,11 @@
-import { Router } from 'express'
+import { Router } from "express";
 
-import { createSessionController } from '../controllers/session.controller'
+import { createSessionController } from "../controllers/session.controller";
+import { validate } from "../middlewares/validate.middleware";
+import createSessionSchema from "../schemas/session.schema";
 
-const sessionRouter = Router()
+const sessionRouter = Router();
 
-sessionRouter.post('', createSessionController)
+sessionRouter.post("", validate(createSessionSchema), createSessionController);
 
-export default sessionRouter
+export default sessionRouter;
