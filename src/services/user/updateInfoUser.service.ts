@@ -13,7 +13,7 @@ const updateInfoUserService = async (
   const user = await userRepository.findOneBy({ id: userId });
 
   if (!user) {
-    throw new AppError("User not found!", 404);
+    throw new AppError("User not found", 404);
   }
 
   if (data.email) {
@@ -40,7 +40,7 @@ const updateInfoUserService = async (
   const userUpdated = await userRepository.findOneBy({ id: userId });
 
   if (!userUpdated) {
-    throw new AppError("User not found!", 404);
+    throw new AppError("User not found", 404);
   }
 
   return userUpdated;

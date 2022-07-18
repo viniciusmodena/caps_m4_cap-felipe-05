@@ -8,7 +8,7 @@ const listMovieReviewsService = async (movie_id: string) => {
   const movie = movieRepository.findOne({ where: { id: movie_id } });
 
   if (!movie) {
-    throw new AppError("Movie not found!", 404);
+    throw new AppError("Movie not found", 404);
   }
 
   const movieReviews = await movieRepository.findOne({
