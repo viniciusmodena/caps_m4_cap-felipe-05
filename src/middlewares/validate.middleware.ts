@@ -10,7 +10,7 @@ export const validate =
         abortEarly: false,
         stripUnknown: true,
       });
-      req.userData = data;
+      req.reqData = data;
       next();
     } catch (e) {
       next(new AppError((e as any).message, (e as any).statusCode));

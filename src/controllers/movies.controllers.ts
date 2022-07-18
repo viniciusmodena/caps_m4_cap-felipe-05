@@ -6,7 +6,7 @@ import listOneMovieService from "../services/movies/listOneMovie.service";
 import updateMovieService from "../services/movies/updateMovie.service";
 
 export const createMovieController = async (req: Request, res: Response) => {
-  const { title, release_year, synopse, image_url } = req.userData;
+  const { title, release_year, synopse, image_url } = req.reqData;
 
   const newMovie = await createMovieService({
     title,
@@ -20,7 +20,7 @@ export const createMovieController = async (req: Request, res: Response) => {
 
 export const updateMovieController = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { title, release_year, synopse, image_url } = req.userData;
+  const { title, release_year, synopse, image_url } = req.reqData;
   const newMovie = await updateMovieService(
     id,
     title,
@@ -48,7 +48,7 @@ export const listMovieController = async (req: Request, res: Response) => {
 export const deleteMovieController = async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const movie = await deleteMovieService(id);
+  await deleteMovieService(id);
 
-  return res.status(200).json({ message: "Movie deleted with sucess!" });
+  return res.status(200).json({ message: "Movie deleted" });
 };

@@ -11,14 +11,14 @@ const listMovieReviewsService = async (movie_id: string) => {
     throw new AppError("Movie not found!", 404);
   }
 
-  const reviews = await movieRepository.findOne({
+  const movieReviews = await movieRepository.findOne({
     relations: {
       reviews: true,
     },
     where: { id: movie_id },
   });
 
-  return reviews;
+  return movieReviews;
 };
 
 export default listMovieReviewsService;

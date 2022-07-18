@@ -10,8 +10,9 @@ const authenticationIsAdm = async (
 
   if (userIsAdm) {
     next();
+  } else {
+    throw new AppError("Unauthorized", 401);
   }
-  throw new AppError("Unauthorized", 401);
 };
 
 export default authenticationIsAdm;

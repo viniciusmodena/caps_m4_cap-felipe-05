@@ -6,7 +6,7 @@ import listUsersService from "../services/user/listUsers.service";
 import updateInfoUserService from "../services/user/updateInfoUser.service";
 
 export const createUserController = async (req: Request, res: Response) => {
-  const { user_name, email, password, is_adm } = req.userData;
+  const { user_name, email, password, is_adm } = req.reqData;
 
   const user = await createUserService({ user_name, email, password, is_adm });
 
@@ -20,26 +20,25 @@ export const listUsersConstroller = async (req: Request, res: Response) => {
 };
 
 export const listOneUserController = async (req: Request, res: Response) => {
-  const userId = req.params.id;
-  const user = await listOneUserService(userId);
+  const { id } = req.params;
+  const user = await listOneUserService(id);
 
   return res.status(200).json(user);
 };
 
 export const updateInfoUserController = async (req: Request, res: Response) => {
-  const userId = req.params.id;
-  const data = req.userData;
+  const { id } = req.params;
+  const data = req.reqData;
 
-  const user = await updateInfoUserService(userId, data);
+  const user = await updateInfoUserService(id, data);
 
   return res.status(200).json(user);
 };
 
 export const deleteUserController = async (req: Request, res: Response) => {
-  const userId = req.params.id;
-  const userDeleted = await deleteUserService(userId);
+  const { id } = req.params;
 
-  if (userDeleted) {
-    return res.status(200).json({ message: "User deleted" });
-  }
+  await deleteUserService(id);
+
+  return res.status(200).json({ message: "User deleted" });
 };
