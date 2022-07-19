@@ -6,7 +6,7 @@ import listGenreService from "../services/genres/listGenres.service";
 import listMoviesByGenreService from "../services/genres/listMoviesByGenre.service";
 
 export const createGenreController = async (req: Request, res: Response) => {
-  const { name } = req.reqData;
+  const { name } = req.userData;
 
   const genre = await createGenreService(name);
 
