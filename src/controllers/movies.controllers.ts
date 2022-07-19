@@ -41,7 +41,8 @@ export const listOneMovieController = async (req: Request, res: Response) => {
 };
 
 export const listMovieController = async (req: Request, res: Response) => {
-  const movies = await listMovieService();
+  const { page, limit } = req.pagination;
+  const movies = await listMovieService({ page, limit });
 
   return res.status(200).json(movies);
 };
@@ -56,8 +57,9 @@ export const deleteMovieController = async (req: Request, res: Response) => {
 
 export const searchMoviesController = async (req: Request, res: Response) => {
   const searchTitle = req.params.search_title;
+  const { page, limit } = req.pagination;
 
-  const searchResult = await searchMoviesService(searchTitle);
+  const searchResult = await searchMoviesService(searchTitle, { page, limit });
 
   return res.status(200).json(searchResult);
 };
