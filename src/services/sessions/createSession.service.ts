@@ -21,8 +21,6 @@ const createSessionService = async ({ email, password }: IUserLogin) => {
     throw new AppError("Invalid email or password", 403);
   }
 
-  console.log('user.password: ', user.password)
-
   if (user.password) {
     const passwordCheck = await compare(password, user.password);
 

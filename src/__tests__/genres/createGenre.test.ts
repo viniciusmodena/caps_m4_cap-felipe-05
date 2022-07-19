@@ -6,6 +6,7 @@ import request from 'supertest'
 import { Genre } from '../../entities/genre.entity'
 import { IUser } from '../../interfaces/user'
 import supertest from 'supertest'
+import { User } from '../../entities/user.entity'
 
 const genre: IGenre = {
   name: 'gente test',
@@ -42,9 +43,10 @@ describe('Tests for route /genres, create', () => {
 
   afterAll(async () => {
     const genreRepository = AppDataSource.getRepository(Genre)
+    const userRepository = AppDataSource.getRepository(User)
+    
     await genreRepository.createQueryBuilder().delete().from(Genre).execute()
-
-    await connection.destroy()
+    await userRepository.createQueryBuilder().delete().from(User).execute()
   })
 
 
@@ -54,21 +56,24 @@ describe('Tests for route /genres, create', () => {
       .set('Authorization', `Bearer ${token}`)
       .send(genre)
 
-    console.log('resposta do create genre: ', response.body)
-
     expect(response.status).toEqual(201)
     expect(response.body).toHaveProperty("id")
-
   })
 
   test('Should not be able to create a genre with the same name', async () => {
-    const response = await request(app).post('/genres').send(genre)
+    const response = await request(app)
+      .post('/genres')
+      .set('Authorization', `Bearer ${token}`)
+      .send(genre)
 
     expect(response.body.message).toEqual("Genre already exists")
   })
 
   test('Should not allow to create genre with names over 50 characters', async () => {
-    const response = await request(app).post('/genres').send(tooLargeGenre)
+    const response = await request(app)
+      .post('/genres')
+      .set('Authorization', `Bearer ${token}`)
+      .send(tooLargeGenre)
 
     expect(response.body.message).toEqual('name must be at most 50 characters')
   })
