@@ -75,16 +75,13 @@ describe("Create an user", () => {
 
   test("Should delete a specific user", async () => {
     const userList = await listUsersService();
-
     const id = userList[0].id;
 
-    const res = await deleteUserService(id);
+    await deleteUserService(id);
 
-    expect(res).toEqual(
-      expect.objectContaining({
-        raw: [],
-        affected: 1,
-      })
-    );
+    const newUserList = await listUsersService();
+    const res = newUserList.find((user) => user.id === id);
+
+    expect(res).toEqual(undefined);
   });
 });

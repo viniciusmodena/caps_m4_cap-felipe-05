@@ -9,6 +9,7 @@ import {
 } from "../controllers/movies.controllers";
 import authenticationIsAdm from "../middlewares/authenticationIsAdm.middleware";
 import isUuidMiddleware from "../middlewares/isUUID.middleware";
+import pagination from "../middlewares/pagination.middleware";
 import tokenValidation from "../middlewares/tokenValidation.middleware";
 import { validate } from "../middlewares/validate.middleware";
 import { movieCreateSchema, movieUpdateSchema } from "../schemas/movie.schema";
@@ -22,8 +23,9 @@ moviesRouter.post(
   validate(movieCreateSchema),
   createMovieController
 );
-moviesRouter.get("", listMovieController);
+moviesRouter.get("", pagination, listMovieController);
 moviesRouter.get("/:id", isUuidMiddleware, listOneMovieController);
+moviesRouter.get("/search/:search_title", pagination, searchMoviesController);
 moviesRouter.patch(
   "/:id",
   isUuidMiddleware,
@@ -39,6 +41,5 @@ moviesRouter.delete(
   authenticationIsAdm,
   deleteMovieController
 );
-moviesRouter.get("/search/:search_title", searchMoviesController);
 
 export default moviesRouter;

@@ -6,9 +6,20 @@
 
 > link heroku-app
 
+## Notes:
+
+Routes that uses ID are in the uuid format.
+Some routes need admin permisson to acess it.
+
 ## Route Users:
 
 POST /users
+
+ERRORS:
+
+- 400 Incorrect body format;
+- 400 Email already registered;
+- 500 Interal server error;
 
 Body format:
 
@@ -41,6 +52,11 @@ Response:
 
 GET /users
 
+ERRORS:
+
+- 404 Incorrect path;
+- 500 Internal server error;
+
 Response:
 
 > 200 OK
@@ -60,6 +76,13 @@ Response:
 ```
 
 GET /users/:id
+
+ERRORS:
+
+- 400 ID need to be uuid format;
+- 404 Incorrect path;
+- 404 User don't exist;
+- 500 Internal server error;
 
 Request parameters user ID
 
@@ -82,6 +105,17 @@ Response:
 ```
 
 PATCH /users/:id
+
+ERRORS:
+
+- 400 ID need to be uuid format;
+- 400 Email already registered;
+- 400 Incorrect body format;
+- 401 Invalid token;
+- 401 Unauthorized;
+- 404 User don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
 
 Important: You must be the owner of the data to acess it
 
@@ -118,6 +152,16 @@ Response:
 
 DELETE /users/:id
 
+ERR0RS:
+
+- 400 ID need to be uuid format;
+- 400 Email already registered;
+- 401 Invalid token;
+- 401 Unauthorized;
+- 404 User don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
+
 Important: You must be the owner of the data to acess it
 
 Request parameters user ID
@@ -131,6 +175,13 @@ Response:
 ## Route Login
 
 POST /login
+
+ERRORS:
+
+- 400 Incorrect body format;
+- 403 Invalid email or password;
+- 404 Incorrect path;
+- 500 Internal server error;
 
 Body format:
 
@@ -158,6 +209,14 @@ Response:
 ## Route Reviews
 
 POST /reviews/:movie_id
+
+ERRORS:
+
+- 400 Incorrect body format;
+- 401 Invalid token;
+- 404 User don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
 
 Request parameters movie ID
 
@@ -197,9 +256,14 @@ Response:
 
 GET /reviews/users/:user_id
 
-Request parameters user ID
+ERRORS:
 
-> Authorization: Bearer {token}
+- 400 ID need to be uuid format;
+- 404 User don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
+
+Request parameters user ID
 
 Response:
 
@@ -220,6 +284,11 @@ Response:
 ```
 
 GET /movies/:movie_id
+
+- 400 ID need to be uuid format;
+- 404 Movie don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
 
 Request parameters movie ID
 
@@ -243,6 +312,15 @@ Response:
 
 DELETE /reviews/:review_id
 
+ERRORS:
+
+- 400 ID need to be uuid format;
+- 401 Invalid token;
+- 401 Unauthorized;
+- 404 Review don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
+
 Request parameters review ID
 
 > Authorization: Bearer {token}
@@ -262,6 +340,14 @@ Response:
 ## Route Movies
 
 POST /movies
+
+ERRORS:
+
+- 400 Incorrect body format;
+- 401 Invalid token;
+- 401 Unauthorized;
+- 404 Incorrect path;
+- 500 Internal server error;
 
 Important: This request needs Admin permission
 
@@ -297,6 +383,11 @@ Response:
 
 GET /movies
 
+ERRORS:
+
+- 404 Incorrect path;
+- 500 Internal server error;
+
 Response:
 
 > 200 OK
@@ -316,6 +407,13 @@ Response:
 
 GET /movies/:movie_id
 
+ERRORS:
+
+- 400 ID need to be uuid format;
+- 404 Movie don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
+
 Request parameters movie ID
 
 Response:
@@ -334,6 +432,16 @@ Response:
 ```
 
 PATCH /movies/:movie_id
+
+ERRORS:
+
+- 400 ID need to be uuid format;
+- 400 Incorrect body format;
+- 401 Invalid token;
+- 401 Unauthorized;
+- 404 Movie don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
 
 Request parameters movie ID
 
@@ -368,6 +476,15 @@ Response
 
 DELETE /movies/:movie_id
 
+ERRORS:
+
+- 400 ID need to be uuid format;
+- 401 Invalid token;
+- 401 Unauthorized;
+- 404 Movie don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
+
 Request parameters movie ID
 
 Important: This request needs Admin permission
@@ -386,9 +503,43 @@ Response:
 
 ```
 
+GET /movies/search/:search_title
+
+ERRORS:
+
+- 404 Incorrect path;
+- 500 Internal server error;
+
+Request parameters searched title ID
+
+Response:
+
+> 200 OK
+
+```
+
+[
+  {
+    "title": "Harry Potter",
+  "release_year": "10/6/2001"
+  "synopse": "Lorem ipsum dorem requires something to describre it",
+  "image_url": "http://google.com.br",
+  }
+]
+
+```
+
 ## Route Genres
 
 POST /genres
+
+ERRORS:
+
+- 400 Incorrect body format;
+- 401 Invalid token;
+- 401 Unauthorized;
+- 404 Incorrect path;
+- 500 Internal server error;
 
 Important: This request needs Admin permission
 
@@ -420,6 +571,16 @@ Response
 
 POST /genres/movie/:movie_id
 
+ERRORS:
+
+- 400 ID need to be uuid
+- 401 Invalid token;
+- 401 Unauthorized;
+- 404 Movie don't exist;
+- 404 Genre don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
+
 Important: This request needs Admin permission
 
 Request parameters movie ID
@@ -449,6 +610,13 @@ Response:
 
 GET /genres/:genre_id
 
+ERRORS:
+
+- 400 ID need to be uuid
+- 404 Genre don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
+
 Request parameters genre ID
 
 Response:
@@ -475,6 +643,11 @@ Response:
 ```
 
 GET /genres
+
+ERRORS:
+
+- 404 Incorrect path;
+- 500 Internal server error;
 
 Response:
 
@@ -514,6 +687,15 @@ Response:
 ```
 
 DELETE /genres/:genre_id
+
+ERRORS:
+
+- 400 ID need to be uuid
+- 401 Invalid token;
+- 401 Unauthorized;
+- 404 Genre don't exist;
+- 404 Incorrect path;
+- 500 Internal server error;
 
 Important: This request needs Admin permission
 
