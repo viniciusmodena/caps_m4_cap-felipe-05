@@ -46,18 +46,22 @@ describe('Tests for route /genres, add genres to a movie', () => {
 
     const movieResponse = await createMovieService(movie)
     movieId = movieResponse.id
+    console.log('movieId na criacao: ', movieId)
 
     await request(app).post('/users').send(user)
     const response = await request(app).post('/login').send(user)
     token = response.body.token
-  })
 
+  })
+  
   afterAll(async () => {
     const movieRepository = AppDataSource.getRepository(Movie)
     const genreRepository = AppDataSource.getRepository(Genre)
-
+    
     await movieRepository.createQueryBuilder().delete().from(Movie).execute()
     await genreRepository.createQueryBuilder().delete().from(Genre).execute()
+    
+    connection.destroy()
   })
 
   test('Should be able to add genres to a movie', async () => {
@@ -69,7 +73,9 @@ describe('Tests for route /genres, add genres to a movie', () => {
     genreId2 = genre2Response.id
 
     const responseToAdd = await addGenreToMovieService({ movieId, genreList })
-    const responseToSearch = await listMovieService()
+    let page = 1
+    let limit = 10
+    const responseToSearch = await listMovieService({ page, limit })
 
     expect(responseToAdd).toEqual('Genres added to movie succesfully')
     expect(responseToSearch[0].genres).toEqual(

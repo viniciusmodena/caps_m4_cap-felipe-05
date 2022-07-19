@@ -74,6 +74,8 @@ describe('Tests for route /genres, list movie by genre', () => {
 
     await movieRepository.createQueryBuilder().delete().from(Movie).execute()
     await genreRepository.createQueryBuilder().delete().from(Genre).execute()
+
+    connection.destroy()
   })
 
   test('Should list movies by genre', async () => {

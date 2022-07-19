@@ -47,6 +47,8 @@ describe('Tests for route /genres, create', () => {
     
     await genreRepository.createQueryBuilder().delete().from(Genre).execute()
     await userRepository.createQueryBuilder().delete().from(User).execute()
+
+    connection.destroy()
   })
 
 
