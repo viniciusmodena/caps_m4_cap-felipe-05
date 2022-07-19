@@ -7,6 +7,7 @@ import {
   listMoviesByGenreController,
 } from "../controllers/genre.controllers";
 import authenticationIsAdm from "../middlewares/authenticationIsAdm.middleware";
+import isUuidMiddleware from "../middlewares/isUUID.middleware";
 import tokenValidation from "../middlewares/tokenValidation.middleware";
 import { validate } from "../middlewares/validate.middleware";
 import { genreCreateSchema } from "../schemas/genre.schema";
@@ -22,14 +23,16 @@ genreRouter.post(
 );
 genreRouter.post(
   "/movie/:movieId",
+  isUuidMiddleware,
   tokenValidation,
   authenticationIsAdm,
   addGenreToMovieController
 );
-genreRouter.get("/:genreId", listMoviesByGenreController);
+genreRouter.get("/:genreId", isUuidMiddleware, listMoviesByGenreController);
 genreRouter.get("", listGenreController);
 genreRouter.delete(
   "/:genreId",
+  isUuidMiddleware,
   tokenValidation,
   authenticationIsAdm,
   deleteGenreController
