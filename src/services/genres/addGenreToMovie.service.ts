@@ -22,8 +22,9 @@ const addGenreToMovieService = async ({
   }
 
   for (const genreName of genreList) {
+    
     const genre = await genreRepository.findOne({
-      where: { name: genreName.toLowerCase() },
+      where: { name: genreName },
     });
 
     if (!genre) {
