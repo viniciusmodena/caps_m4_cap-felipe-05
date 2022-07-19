@@ -17,8 +17,6 @@ const searchMoviesService = async (
     .take(limit)
     .getMany();
 
-  console.log("passou movies");
-
   return movies;
 };
 
