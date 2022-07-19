@@ -13,7 +13,6 @@ const pagination = (req: Request, res: Response, next: NextFunction) => {
   }
 
   req.pagination = { page, limit };
-
   next();
 };
 
