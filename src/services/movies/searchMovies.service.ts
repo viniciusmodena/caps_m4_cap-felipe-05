@@ -7,18 +7,17 @@ const searchMoviesService = async (
   { page, limit }: IPagination
 ): Promise<Movie[]> => {
   const movieRepository = AppDataSource.getRepository(Movie);
-
   const movies = await movieRepository
-    .createQueryBuilder("movie")
+    .createQueryBuilder("movies")
     .leftJoinAndSelect("movies.genres", "genres")
-    .where("LOWER(movie.title) like :title", {
+    .where("LOWER(movies.title) like :title", {
       title: `%${title.toLowerCase()}%`,
     })
     .skip((page - 1) * limit)
     .take(limit)
     .getMany();
 
-  console.log(movies);
+  console.log("passou movies");
 
   return movies;
 };
