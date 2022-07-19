@@ -29,6 +29,8 @@ describe('Tests for route /genres, list', () => {
   afterAll(async () => {
     const genreRepository = AppDataSource.getRepository(Genre)
     await genreRepository.createQueryBuilder().delete().from(Genre).execute()
+
+    connection.destroy()
   })
 
   test('Should list movies by genre', async () => {

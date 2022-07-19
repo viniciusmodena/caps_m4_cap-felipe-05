@@ -43,6 +43,8 @@ describe('Tests for route /genres, delete', () => {
 
     await genreRepository.createQueryBuilder().delete().from(Genre).execute()
     await userRepository.createQueryBuilder().delete().from(User).execute()
+
+    connection.destroy()
   })
 
   test('Should delete genre', async () => {
@@ -53,7 +55,7 @@ describe('Tests for route /genres, delete', () => {
       .set('Authorization', `Bearer ${token}`)
 
     expect(response.status).toEqual(200)
-    expect(response.body.message).toEqual('Genre deleted.')
+    expect(response.body.message).toEqual('Genre deleted')
   })
 
   test('Attempt to delete genre that does not exist', async () => {
