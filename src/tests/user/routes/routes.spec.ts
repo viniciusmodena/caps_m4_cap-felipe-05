@@ -219,7 +219,7 @@ describe("Create an user", () => {
     const token = await createSessionService({ email, password });
 
     const response = await request(app).get("/users");
-    const id = response.body[0].id;
+    const id = response.body.find((user: IUser) => user.email === email).id;
 
     const responseOne = await request(app)
       .delete(`/users/${id}`)
