@@ -47,5 +47,5 @@ export const deleteGenreController = async (req: Request, res: Response) => {
 
   await deleteGenreService(genreId);
 
-  return res.status(200).json({ message: "Genre deleted." });
+  return res.status(200).json({ message: "Genre deleted" });
 };

@@ -4,9 +4,11 @@ import {
   deleteMovieController,
   listMovieController,
   listOneMovieController,
+  searchMoviesController,
   updateMovieController,
 } from "../controllers/movies.controllers";
 import authenticationIsAdm from "../middlewares/authenticationIsAdm.middleware";
+import isUuidMiddleware from "../middlewares/isUUID.middleware";
 import tokenValidation from "../middlewares/tokenValidation.middleware";
 import { validate } from "../middlewares/validate.middleware";
 import { movieCreateSchema, movieUpdateSchema } from "../schemas/movie.schema";
@@ -21,9 +23,10 @@ moviesRouter.post(
   createMovieController
 );
 moviesRouter.get("", listMovieController);
-moviesRouter.get("/:id", listOneMovieController);
+moviesRouter.get("/:id", isUuidMiddleware, listOneMovieController);
 moviesRouter.patch(
   "/:id",
+  isUuidMiddleware,
   tokenValidation,
   authenticationIsAdm,
   validate(movieUpdateSchema),
@@ -31,9 +34,11 @@ moviesRouter.patch(
 );
 moviesRouter.delete(
   "/:id",
+  isUuidMiddleware,
   tokenValidation,
   authenticationIsAdm,
   deleteMovieController
 );
+moviesRouter.get("/search/:search_title", searchMoviesController);
 
 export default moviesRouter;

@@ -8,7 +8,7 @@ const listUserReviewsService = async (user_id: string) => {
   const user = userRepository.findOne({ where: { id: user_id } });
 
   if (!user) {
-    throw new AppError("User not found!", 404);
+    throw new AppError("User not found", 404);
   }
 
   const reviews = await userRepository.findOne({
