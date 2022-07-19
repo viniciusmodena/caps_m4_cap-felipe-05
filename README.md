@@ -4,12 +4,12 @@
 
 ## BASE URL
 
-> link heroku-app
+> https://capstone-m4-api.herokuapp.com/
 
 ## Notes:
 
-Routes that uses ID are in the uuid format.
-Some routes need admin permisson to acess it.
+- Routes that uses ID are in the uuid format.
+- Some routes need admin permisson to acess it.
 
 ## Route Users:
 
@@ -381,12 +381,14 @@ Response:
 
 ```
 
-GET /movies
+GET /movies/?page=1&limit=10
 
 ERRORS:
 
 - 404 Incorrect path;
 - 500 Internal server error;
+
+This request have Pagination, you can edit the pages to show changing the request querys, if you dont pass any query pagination the default values will be page 1 and limit 10.
 
 Response:
 
@@ -431,7 +433,7 @@ Response:
 
 ```
 
-PATCH /movies/:movie_id
+PATCH /movies/:movie_id/?page=1&limit=10
 
 ERRORS:
 
@@ -442,6 +444,8 @@ ERRORS:
 - 404 Movie don't exist;
 - 404 Incorrect path;
 - 500 Internal server error;
+
+This request have Pagination, you can edit the pages to show changing the request querys, if you dont pass any query pagination the default values will be page 1 and limit 10.
 
 Request parameters movie ID
 
