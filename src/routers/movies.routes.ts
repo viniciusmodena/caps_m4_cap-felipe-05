@@ -4,6 +4,7 @@ import {
   deleteMovieController,
   listMovieController,
   listOneMovieController,
+  searchMoviesController,
   updateMovieController,
 } from "../controllers/movies.controllers";
 import authenticationIsAdm from "../middlewares/authenticationIsAdm.middleware";
@@ -38,5 +39,6 @@ moviesRouter.delete(
   authenticationIsAdm,
   deleteMovieController
 );
+moviesRouter.get("/search/:search_title", searchMoviesController);
 
 export default moviesRouter;
