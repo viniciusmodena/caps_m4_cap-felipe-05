@@ -61,7 +61,6 @@ describe("Tests for route /genres, add genres to a movie", () => {
     let limit = 10;
     const responseToSearch = await listOneMovieService(movieId);
     expect(responseToAdd).toEqual("Genres added to movie succesfully");
-    console.log(responseToSearch);
     expect(responseToSearch.genres).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
@@ -99,4 +98,3 @@ describe("Tests for route /genres, add genres to a movie", () => {
     );
   });
 });
-
