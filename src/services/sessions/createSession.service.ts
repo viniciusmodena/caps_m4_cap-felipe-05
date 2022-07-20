@@ -9,7 +9,7 @@ import { AppError } from "../../errors/appError";
 
 const createSessionService = async ({ email, password }: IUserLogin) => {
   const userRepository = AppDataSource.getRepository(User);
-
+  console.log(email, password);
   const user = await userRepository.findOne({
     where: {
       email: email,
@@ -35,6 +35,7 @@ const createSessionService = async ({ email, password }: IUserLogin) => {
     { expiresIn: "1h" }
   );
 
+  console.log(token);
   return token;
 };
 

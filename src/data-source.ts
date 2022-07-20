@@ -3,6 +3,7 @@ import { DataSource } from 'typeorm'
 import 'dotenv/config'
 
 const host = process.env.IS_COMPOSE ? "db" : "localhost";
+
 const synchronize = process.env.NODE_ENV === "test" ? true : false;
 
 export const AppDataSource = new DataSource({
