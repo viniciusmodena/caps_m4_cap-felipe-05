@@ -117,6 +117,7 @@ describe("Tests for route /genres, add genres to a movie", () => {
     expect(response.status).toEqual(404);
     expect(response.body.message).toEqual(
       `Genre ${genreList.genreList[0]} not found`
+
     );
   });
 });
