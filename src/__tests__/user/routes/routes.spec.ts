@@ -6,6 +6,8 @@ import { User } from "../../../entities/user.entity";
 import createSessionService from "../../../services/sessions/createSession.service";
 import { IUser } from "../../../interfaces/user";
 
+let userId: string;
+
 describe("Create an user", () => {
   let connection: DataSource;
 
@@ -33,6 +35,7 @@ describe("Create an user", () => {
     const userData = { user_name, email, password, is_adm };
 
     const response = await request(app).post("/users").send(userData);
+    userId = response.body.id;
 
     expect(response.status).toBe(201);
 
@@ -189,13 +192,12 @@ describe("Create an user", () => {
     const token = await createSessionService({ email, password });
 
     const response = await request(app).get("/users");
-    const id = response.body[0].id;
     const user_name = "fulano";
 
     const userData = { user_name };
 
     const responseOne = await request(app)
-      .patch(`/users/${id}`)
+      .patch(`/users/${userId}`)
       .send(userData)
       .set("Authorization", `bearer: ${token}`);
 
