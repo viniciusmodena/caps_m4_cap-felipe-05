@@ -8,7 +8,7 @@ const deleteMovieService = async (id: string): Promise<void> => {
   const movie = await movieRepository.findOneBy({ id: id });
 
   if (!movie) {
-    throw new AppError("movie not found");
+    throw new AppError("Movie not found");
   }
 
   await movieRepository.delete(movie!.id);

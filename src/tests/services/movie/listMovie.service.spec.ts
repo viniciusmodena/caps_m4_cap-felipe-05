@@ -28,7 +28,9 @@ describe("List movies", () => {
 
   test("Should list all movies  ", async () => {
     const movie = await createMovieService(movieData);
-    const listMovie = await listMovieService();
+    let page = 1;
+    let limit = 10;
+    const listMovie = await listMovieService({ page, limit });
 
     expect(listMovie).toHaveProperty("map");
   });

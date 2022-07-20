@@ -30,7 +30,9 @@ describe("Delete a movie", () => {
   test("Should delete a movie", async () => {
     const movie = await createMovieService(movieData);
     await deleteMovieService(movie.id);
-    const movieList = await listMovieService();
+    let page = 1;
+    let limit = 10;
+    const movieList = await listMovieService({ page, limit });
     const res = movieList.find((e) => e.id === movie.id);
 
     expect(res).toEqual(undefined);
