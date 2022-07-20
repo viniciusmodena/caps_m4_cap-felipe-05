@@ -13,16 +13,16 @@ const updateInfoUserService = async (
   const user = await userRepository.findOneBy({ id: userId });
 
   if (!user) {
-    throw new AppError("User not found!", 404);
+    throw new AppError("User not found", 404);
   }
 
   if (data.email) {
     const users = await userRepository.find();
 
-    const emailAlreadyExist = users.find((user) => user.email === data.email);
+    const emailAlreadyExist = users.find((el) => el.email === data.email);
 
     if (emailAlreadyExist) {
-      throw new AppError("Email already exists!");
+      throw new AppError("Email already exists");
     }
   }
 
@@ -40,7 +40,7 @@ const updateInfoUserService = async (
   const userUpdated = await userRepository.findOneBy({ id: userId });
 
   if (!userUpdated) {
-    throw new AppError("User not found!", 404);
+    throw new AppError("User not found", 404);
   }
 
   return userUpdated;

@@ -5,6 +5,7 @@ declare global {
     interface Request {
       userData: any;
       reqData: any;
+      pagination: any;
     }
   }
 }
