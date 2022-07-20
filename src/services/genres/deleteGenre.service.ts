@@ -1,23 +1,23 @@
-import { AppDataSource } from '../../data-source'
-import { Genre } from '../../entities/genre.entity'
-import { AppError } from '../../errors/appError'
-import { isUuid } from 'uuidv4'
+import { AppDataSource } from "../../data-source";
+import { Genre } from "../../entities/genre.entity";
+import { AppError } from "../../errors/appError";
+import { validate } from "uuid";
 
 const deleteGenreService = async (genreId: string): Promise<void> => {
-  const genreRepository = AppDataSource.getRepository(Genre)
+  const genreRepository = AppDataSource.getRepository(Genre);
 
-  const uuidCheck = isUuid(genreId)
+  const uuidCheck = validate(genreId);
 
   if (!uuidCheck) {
-    throw new AppError('Genre not found', 404)
+    throw new AppError("Genre not found", 404);
   }
 
-  const genre = await genreRepository.findOne({ where: { id: genreId } })
+  const genre = await genreRepository.findOne({ where: { id: genreId } });
 
   if (!genre) {
-    throw new AppError('Genre not found', 404)
+    throw new AppError("Genre not found", 404);
   }
-  await genreRepository.remove(genre)
-}
+  await genreRepository.remove(genre);
+};
 
-export default deleteGenreService
+export default deleteGenreService;
