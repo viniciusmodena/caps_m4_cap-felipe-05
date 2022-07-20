@@ -15,10 +15,10 @@ export class Review {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ length: 50 })
+  @Column({ length: 50, nullable: true })
   title: string;
 
-  @Column({ length: 1000 })
+  @Column({ length: 1000, nullable: true })
   description: string;
 
   @Column({ type: "integer" })

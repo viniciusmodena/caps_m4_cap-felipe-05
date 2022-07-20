@@ -3,7 +3,9 @@ import * as express from "express";
 declare global {
   namespace Express {
     interface Request {
-      userData: IUser;
+      userData: any;
+      reqData: any;
+      pagination: any;
     }
   }
 }

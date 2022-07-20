@@ -19,13 +19,13 @@ const createReviewService = async ({
   const user = await userRepository.findOne({ where: { id: user_id } });
 
   if (!user) {
-    throw new AppError("User not found");
+    throw new AppError("User not found", 404);
   }
 
   const movie = await movieRepository.findOne({ where: { id: movie_id } });
 
   if (!movie) {
-    throw new AppError("Movie not found");
+    throw new AppError("Movie not found", 404);
   }
 
   const newReview = reviewRepository.create({

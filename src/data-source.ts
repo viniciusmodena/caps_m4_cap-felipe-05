@@ -1,18 +1,12 @@
-import "reflect-metadata";
-import { DataSource } from "typeorm";
-import "dotenv/config";
+import 'reflect-metadata'
+import { DataSource } from 'typeorm'
+import 'dotenv/config'
 
 const host = process.env.IS_COMPOSE ? "db" : "localhost";
 
-export const AppDataSource =
-  process.env.NODE_ENV === "test"
-    ? new DataSource({
-        type: "sqlite",
-        database: ":memory:",
-        entities: ["./src/entities/*.ts"],
-        synchronize: true,
-      })
-    : new DataSource({
+const synchronize = process.env.NODE_ENV === "test" ? true : false;
+
+export const AppDataSource = new DataSource({
         type: "postgres",
         // host,
         // port: 5432,
@@ -28,8 +22,8 @@ export const AppDataSource =
           process.env.NODE_ENV === "production"
             ? { rejectUnauthorized: false }
             : false,
-        synchronize: false,
-        logging: true,
+        synchronize,
+        logging: false,
         entities:
           process.env.NODE_ENV === "production"
             ? ["./dist/src/entities/*.js"]
