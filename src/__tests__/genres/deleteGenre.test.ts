@@ -25,6 +25,7 @@ describe('Tests for route /genres, delete', () => {
   beforeAll(async () => {
     await AppDataSource.initialize()
       .then((res) => {
+
         connection = res
       })
       .catch((err) => {
@@ -67,3 +68,4 @@ describe('Tests for route /genres, delete', () => {
     expect(response.body.message).toEqual('Genre not found')
   })
 })
+

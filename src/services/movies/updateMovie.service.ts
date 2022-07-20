@@ -14,7 +14,7 @@ const updateMovieService = async (
   const movie = await movieUpdateRepository.findOneBy({ id: id });
 
   if (!movie) {
-    throw new AppError("Movie not found", 404);
+    throw new AppError("Movie not found");
   }
 
   await movieUpdateRepository.update(movie!.id, {
