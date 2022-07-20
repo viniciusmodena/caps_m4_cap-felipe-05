@@ -21,9 +21,10 @@ const addGenreToMovieService = async ({
     throw new AppError("Movie not found", 404);
   }
 
-  genreList.forEach(async (genreName) => {
+  for (const genreName of genreList) {
+    
     const genre = await genreRepository.findOne({
-      where: { name: genreName.toLowerCase() },
+      where: { name: genreName },
     });
 
     if (!genre) {
@@ -31,7 +32,7 @@ const addGenreToMovieService = async ({
     }
 
     movie.genres = [...movie.genres, genre];
-  });
+  }
 
   await movieRepository.save(movie);
 

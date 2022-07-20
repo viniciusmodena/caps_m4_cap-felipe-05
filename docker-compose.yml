@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   api:
-    container_name: capstone_m4
+    container_name: capstone_dbm4
     build: .
     ports:
       - 3000:3000
@@ -21,6 +21,8 @@ services:
     ports:
       - 5431:5432
     environment:
-      - POSTGRES_USER=grupo05
-      - POSTGRES_PASSWORD=grupo05dofelipe
-      - POSTGRES_DB=capstone_m4
+      - ./.env
+
+      # - POSTGRES_USER=grupo05
+      # - POSTGRES_PASSWORD=grupo05dofelipe
+      # - POSTGRES_DB=capstone_m4

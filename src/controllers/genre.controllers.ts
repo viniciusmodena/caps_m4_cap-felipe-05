@@ -6,7 +6,7 @@ import listGenreService from "../services/genres/listGenres.service";
 import listMoviesByGenreService from "../services/genres/listMoviesByGenre.service";
 
 export const createGenreController = async (req: Request, res: Response) => {
-  const { name } = req.reqData;
+  const { name } = req.userData;
 
   const genre = await createGenreService(name);
 
@@ -47,5 +47,5 @@ export const deleteGenreController = async (req: Request, res: Response) => {
 
   await deleteGenreService(genreId);
 
-  return res.status(200).json({ message: "Genre deleted." });
+  return res.status(200).json({ message: "Genre deleted" });
 };
