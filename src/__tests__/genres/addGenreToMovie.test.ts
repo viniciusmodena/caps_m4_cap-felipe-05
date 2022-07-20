@@ -120,4 +120,3 @@ describe('Tests for route /genres, add genres to a movie', () => {
   })
 })
 
-// novo commit
