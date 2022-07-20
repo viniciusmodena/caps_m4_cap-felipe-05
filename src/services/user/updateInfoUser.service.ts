@@ -22,7 +22,7 @@ const updateInfoUserService = async (
     const emailAlreadyExist = users.find((el) => el.email === data.email);
 
     if (emailAlreadyExist) {
-      throw new AppError("Email already exists!");
+      throw new AppError("Email already exists");
     }
   }
 
