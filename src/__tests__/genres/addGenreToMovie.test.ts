@@ -44,24 +44,25 @@ describe("Tests for route /genres, add genres to a movie", () => {
         console.error("Error during Data Source initialization", err);
       });
 
-    const movieResponse = await createMovieService(movie);
-    movieId = movieResponse.id;
+    const movieResponse = await createMovieService(movie)
+    movieId = movieResponse.id
 
-    await request(app).post("/users").send(user);
-    const response = await request(app).post("/login").send(user);
-    token = response.body.token;
-  });
+    await request(app).post('/users').send(user)
+    const response = await request(app).post('/login').send(user)
+    token = response.body.token
 
+  })
+  
   afterAll(async () => {
-    const movieRepository = AppDataSource.getRepository(Movie);
-    const genreRepository = AppDataSource.getRepository(Genre);
 
-    await movieRepository.createQueryBuilder().delete().from(Movie).execute();
-    await genreRepository.createQueryBuilder().delete().from(Genre).execute();
-  });
-
-  test("Should be able to add genres to a movie", async () => {
-    const genreList: string[] = ["genre1", "genre2"];
+    const movieRepository = AppDataSource.getRepository(Movie)
+    const genreRepository = AppDataSource.getRepository(Genre)
+    
+    await movieRepository.createQueryBuilder().delete().from(Movie).execute()
+    await genreRepository.createQueryBuilder().delete().from(Genre).execute()
+    
+    connection.destroy()
+  })
 
     const genre1Response = await createGenreService(genreList[0]);
     const genre2Response = await createGenreService(genreList[1]);
@@ -71,8 +72,11 @@ describe("Tests for route /genres, add genres to a movie", () => {
     const page = 1;
     const limit = 10;
 
-    const responseToAdd = await addGenreToMovieService({ movieId, genreList });
-    const responseToSearch = await listMovieService({ page, limit });
+
+    const responseToAdd = await addGenreToMovieService({ movieId, genreList })
+    let page = 1
+    let limit = 10
+    const responseToSearch = await listMovieService({ page, limit })
 
     expect(responseToAdd).toEqual("Genres added to movie succesfully");
     expect(responseToSearch[0].genres).toEqual(
