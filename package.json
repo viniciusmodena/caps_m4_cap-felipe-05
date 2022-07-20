@@ -9,7 +9,6 @@
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "build": "tsc",
-
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "start": "node dist/src/server.js"
   },

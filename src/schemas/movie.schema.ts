@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
 import { IMovie, IMovieUpdate } from "../interfaces/movie";
+
 export const movieCreateSchema: SchemaOf<IMovie> = yup.object().shape({
   title: yup.string().required().max(150),
   release_year: yup.number().integer().min(1800).max(4000).required(),
@@ -14,3 +15,4 @@ export const movieUpdateSchema: SchemaOf<IMovieUpdate> = yup.object().shape({
   synopse: yup.string().max(1000),
   image_url: yup.string().max(256),
 });
+

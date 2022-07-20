@@ -1,3 +1,4 @@
+import { env } from "process";
 import app from "./app";
 import { AppDataSource } from "./data-source";
 
